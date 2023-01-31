@@ -1,0 +1,17 @@
+﻿  chat.cpp
+C:\Users\Илья\.ssh\main\Chat\Chat\chat.h(6,9): error C3646: _userName: неизвестный спецификатор переопределения
+C:\Users\Илья\.ssh\main\Chat\Chat\chat.h(6,18): error C4430: отсутствует спецификатор типа - предполагается int. Примечание. C++ не поддерживает int по умолчанию
+C:\Users\Илья\.ssh\main\Chat\Chat\chat.h(7,9): error C3646: _login: неизвестный спецификатор переопределения
+C:\Users\Илья\.ssh\main\Chat\Chat\chat.h(7,15): error C4430: отсутствует спецификатор типа - предполагается int. Примечание. C++ не поддерживает int по умолчанию
+C:\Users\Илья\.ssh\main\Chat\Chat\chat.h(12,7): error C2061: синтаксическая ошибка: идентификатор "string"
+C:\Users\Илья\.ssh\main\Chat\Chat\chat.cpp(6,57): error C2511: User::User(std::string,std::string,int): перегруженная функция-член не найдена в "User"
+C:\Users\Илья\.ssh\main\Chat\Chat\chat.h(3): message : см. объявление "User"
+C:\Users\Илья\.ssh\main\Chat\Chat\chat.cpp(7,1): error C2550: User::{ctor}: список инициализации конструктора должен использоваться только в месте определения конструктора
+  chat_main.cpp
+C:\Users\Илья\.ssh\main\Chat\Chat\chat.h(6,9): error C3646: _userName: неизвестный спецификатор переопределения
+C:\Users\Илья\.ssh\main\Chat\Chat\chat.h(6,18): error C4430: отсутствует спецификатор типа - предполагается int. Примечание. C++ не поддерживает int по умолчанию
+C:\Users\Илья\.ssh\main\Chat\Chat\chat.h(7,9): error C3646: _login: неизвестный спецификатор переопределения
+C:\Users\Илья\.ssh\main\Chat\Chat\chat.h(7,15): error C4430: отсутствует спецификатор типа - предполагается int. Примечание. C++ не поддерживает int по умолчанию
+C:\Users\Илья\.ssh\main\Chat\Chat\chat.h(12,7): error C2061: синтаксическая ошибка: идентификатор "string"
+C:\Users\Илья\.ssh\main\Chat\Chat\chat_main.cpp(10,42): error C2661: User::User: нет перегруженной функции, принимающей 3 аргументов
+  Создание кода...

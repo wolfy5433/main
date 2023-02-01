@@ -23,5 +23,6 @@ public:
 	void SetMessage(string message);
 	string GetMessage();
 	friend ostream& operator<<(ostream& output, const User& us);
+	int Check(string login, int password);
 };
 

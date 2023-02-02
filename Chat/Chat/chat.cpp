@@ -51,13 +51,18 @@ ostream& operator<<(ostream& output, const User& us)
 
 	return output;
 }
-int User::Check(string login, int password)
+bool User::Check(string login, int password)
 {
-	int count = 0;
 	if ((_login == login) && (_password == password))
 	{
 		cout << _userName << ", вход в аккаунт произведен успешно" << endl;
-		count += 1;
+		return true;
 	}
-	return count;
+	return false;
 };
+ 
+void clearCin()
+{
+	cin.clear();
+	cin.ignore(32767, '\n');
+}

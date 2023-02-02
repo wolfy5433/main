@@ -10,24 +10,10 @@ int main()
 	int password;
 	int i = 0;
 	int open;
-	/*cout << "Создайте аккаунт" << endl;
-	cout << "Введите имя: ";
-	getline(cin, userName);
-	cout << "Введите логин: ";
-	getline(cin, login);
-	cout << "Введите пароль: ";
-	cin >> password;
-	cin.clear();
-	cin.ignore(32767, '\n');*/
-	/*data[i] = User(userName, login, password);*/
-	/*data = data->plusOneElement(data, size);
-	size++;
-	i++;*/
 	cout << "Выберите,что вы хотите сделать" << endl;
 	cout << "1.Создать аккаунт" << endl << "2.Войти в аккаунт" << endl << "3.Отобразить всех пользователей" << endl << "4.Выйти из чата" << endl;
 	cin >> open;
-	cin.clear();
-	cin.ignore(32767, '\n');
+	clearCin();
 	while (open != 4)
 	{
 		switch (open)
@@ -40,8 +26,7 @@ int main()
 			getline(cin, login);
 			cout << "Введите пароль: ";
 			cin >> password;
-			cin.clear();
-			cin.ignore(32767, '\n');
+			clearCin();
 			data[i] = User(userName, login, password);
 			++i;
 			data = data->plusOneElement(data, size); // меняет размер массива на + 1
@@ -55,22 +40,67 @@ int main()
 				cout << "Не создано еще ни одного аккаунта" << endl;
 				break;
 			}
-			string LoginCheck;
-			int PasswordCheck;
 			cout << "Введите логин" << endl;
-			cin >> LoginCheck;
+			getline(cin, login);
 			cout << "Введите пароль" << endl;
-			cin >> PasswordCheck;
-			int b;
-			for (int i = 0; i < 2; i++)
+			cin >> password;
+			clearCin();
+			bool b;
+			int i = 0;
+			for (; i < size; i++)
 			{
-				b = data[i].Check(LoginCheck, PasswordCheck);
-				if (b == 1)
+				b = data[i].Check(login, password);
+				if (b == true)
 				{
+					char choiceInsideCase2;
+					cout << "Выберите действие:" << endl << "1.Написать сообщение" << endl << "2.Показать сообщение" << endl;
+					cin >> choiceInsideCase2;
+					clearCin();
+					switch (choiceInsideCase2)
+					{
+					case '1':
+					{
+						cout << "Имена пользователей:" << endl;
+						for (int j = 0; j < i; ++j)
+						{
+							cout << '-' << data[j].GetUserName() << endl;
+						}
+						for (int j = i + 1; j < size - 1; ++j)
+						{
+							cout << '-' << data[j].GetUserName() << endl;
+						}
+						cout << endl;
+						cout << "Введите имя пользователя кому хотите написать сообщение: ";
+						getline(cin, userName);
+						for (int k = 0; k < size - 1; ++k)
+						{
+							if (userName == data[k].GetUserName())
+							{
+								string message;
+								cout << "Введите сообщение: ";
+								getline(cin, message);
+								message = "У вас сообщение от пользователя " + data[i].GetUserName() + ": " + '\"' + message + '\"';
+								data[k].SetMessage(message);
+							}
+						}
+						break;
+					}
+					case '2':
+					{
+						cout << data[i].GetMessage() << '\n' << endl;
+						system("pause>0");
+						break;
+					}
+
+					default:
+					{
+						cout << "Выход" << endl;
+					}
+					}
 					break;
 				};
 			};
-			if (b == 0)
+			if (b == false)
 			{
 				cout << "Неверный логин или пароль" << endl;
 			};
@@ -96,8 +126,7 @@ int main()
 		}
 		cout << "1.Создать аккаунт" << endl << "2.Войти в аккаунт" << endl << "3.Отобразить всех пользователей" << endl << "4.Выйти из чата" << endl;
 		cin >> open;
-		cin.clear();
-		cin.ignore(32767, '\n');
+		clearCin();
 	}
 	return 0;
 }

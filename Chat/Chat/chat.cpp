@@ -18,8 +18,7 @@ User::User(const User& other)
 	_login = other._login;
 	_password = other._password;
 }
-
-User* User::plusOneElement(User* data, int size)
+ User* User::plusOneElement(User* data, int size)
 {
 	User* coppyOfData = new User[size + 1];
 	for (int i = 0; i < size; ++i)
@@ -65,7 +64,6 @@ MessageArray::MessageArray(int size) : _msgArr(new string[size]), _size(size)
 {
 
 }
-
 void MessageArray::CoppyOfMsgArr(int newSize)
 {
 	string* msgArr = new string[newSize];
@@ -94,12 +92,19 @@ ostream& operator<<(ostream& output, const MessageArray& msgArr)
 {
 	for (int i = 0; i < msgArr._size; ++i)
 	{
-		output << msgArr._msgArr[i] << ' ';
+		output << msgArr._msgArr[i] << endl;
 	}
 	output << '\n';
 	return output;
 }
-
+MessageArray* MessageArray::plusOneElement(MessageArray* arr, int size)
+{
+	MessageArray* coppyOfarray = new MessageArray[size + 1];
+	for (int i = 0; i < size; ++i)
+		coppyOfarray[i] = arr[i];
+	delete[] arr;
+	return coppyOfarray;
+}
 void clearCin()
 {
 	cin.clear();

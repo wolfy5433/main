@@ -7,6 +7,7 @@ int main()
 	int size = 1;
 	User* data = new User[size];
 	string userName, login;
+	MessageArray* arr = new MessageArray[size];
 	int password;
 	int i = 0;
 	char open;
@@ -28,8 +29,10 @@ int main()
 			cin >> password;
 			clearCin();
 			data[i] = User(userName, login, password);
+			arr[i] = MessageArray(0);
 			++i;
 			data = data->plusOneElement(data, size); // меняет размер массива на + 1
+			arr = arr->plusOneElement(arr, size);
 			++size;
 			break;
 		}
@@ -92,9 +95,7 @@ int main()
 										getline(cin, message);
 										message = "У вас сообщение от пользователя " + data[i].GetUserName() + ": " + '\"' + message + '\"';
 										data[k].SetMessage(message);
-										MessageArray msg;
-										msg.Test(data[k].GetMessage());
-										cout << msg << endl;
+										arr[k].Test(data[k].GetMessage());
 									}
 								}
 								break;
@@ -110,8 +111,9 @@ int main()
 									groupmessage = ' ';
 									if (name != data[k].GetUserName())
 									{
-										groupmessage = "У вас сообщение от пользователя " + data[i].GetUserName() + ": " + '\"' + message + '\"';
+										groupmessage = "У вас групповое сообщение от пользователя " + data[i].GetUserName() + ": " + '\"' + message + '\"';
 										data[k].SetMessage(groupmessage);
+										arr[k].Test(data[k].GetMessage());
 									};
 								}
 								break;
@@ -121,8 +123,8 @@ int main()
 						}
 						case '2':
 						{
-
-							cout << data[i].GetMessage() << '\n' << endl;
+							cout << arr[i] << endl;
+							//cout << data[i].GetMessage() << '\n' << endl;
 							/*system("pause>0");*/
 							break;
 						}

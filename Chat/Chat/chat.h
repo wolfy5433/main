@@ -18,7 +18,7 @@ public:
 	User(string userName, string login, int password);
 	User(const User& other);
 	~User();
-	User* plusOneElement(User* data, int size);
+	virtual User* plusOneElement(User* data, int size);
 	string GetUserName();
 	void SetMessage(string message);
 	string GetMessage();
@@ -37,6 +37,7 @@ public:
 	MessageArray(int size);
 	void CoppyOfMsgArr(int newSize); 
 	~MessageArray();
+	MessageArray* plusOneElement(MessageArray* arr, int size);
 	void Test(string msg);
 	friend ostream& operator<<(ostream& output, const MessageArray& msgArr);
 };

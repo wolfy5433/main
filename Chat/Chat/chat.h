@@ -7,7 +7,7 @@ using namespace std;
 
 class User
 {
-private:
+protected:
 	string _userName;
 	string _login;
 	int _password;
@@ -24,6 +24,21 @@ public:
 	string GetMessage();
 	friend ostream& operator<<(ostream& output, const User& us);
 	bool Check(string login, int password);
+};
+
+class MessageArray : public User
+{
+private:
+	string* _msgArr = nullptr;
+	int _size = 0;
+
+public:
+	MessageArray() = default;
+	MessageArray(int size);
+	void CoppyOfMsgArr(int newSize); 
+	~MessageArray();
+	void Test(string msg);
+	friend ostream& operator<<(ostream& output, const MessageArray& msgArr);
 };
 
 void clearCin();

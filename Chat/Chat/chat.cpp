@@ -61,6 +61,45 @@ bool User::Check(string login, int password)
 	return false;
 };
  
+MessageArray::MessageArray(int size) : _msgArr(new string[size]), _size(size)
+{
+
+}
+
+void MessageArray::CoppyOfMsgArr(int newSize)
+{
+	string* msgArr = new string[newSize];
+	for (int index = 0; index < _size; ++index)
+	{
+		msgArr[index] = _msgArr[index];
+	};
+
+	delete[] _msgArr;
+	_msgArr = msgArr;
+	_size = newSize;
+}
+
+void MessageArray::Test(string msg)
+{
+	CoppyOfMsgArr(_size + 1);
+	_msgArr[_size - 1] = msg;
+}
+
+MessageArray::~MessageArray()
+{
+
+}
+
+ostream& operator<<(ostream& output, const MessageArray& msgArr)
+{
+	for (int i = 0; i < msgArr._size; ++i)
+	{
+		output << msgArr._msgArr[i] << ' ';
+	}
+	output << '\n';
+	return output;
+}
+
 void clearCin()
 {
 	cin.clear();

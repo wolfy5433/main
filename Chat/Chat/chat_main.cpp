@@ -92,6 +92,9 @@ int main()
 										getline(cin, message);
 										message = "У вас сообщение от пользователя " + data[i].GetUserName() + ": " + '\"' + message + '\"';
 										data[k].SetMessage(message);
+										MessageArray msg;
+										msg.Test(data[k].GetMessage());
+										cout << msg << endl;
 									}
 								}
 								break;

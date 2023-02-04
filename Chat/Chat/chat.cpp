@@ -1,8 +1,6 @@
 #include "chat.h"
-
 using namespace std;
-
-User::User(string userName, string login, int password) : _userName(userName), _login(login), _password(password)
+User::User(string userName, string login, string password) : _userName(userName), _login(login), _password(password)
 {
 	
 }
@@ -27,7 +25,7 @@ User::User(const User& other)
 	return coppyOfData;
 }
 
-string User::GetUserName()
+string User::GetUserName() const
 {
 	return _userName;
 }
@@ -37,20 +35,22 @@ void User::SetMessage(string message)
 	_message = message;
 }
 
-string User::GetMessage()
+string User::GetMessage() const
 {
 	return _message;
 }
-
+string User::GetLogin() const
+{
+	return _login;
+}
 ostream& operator<<(ostream& output, const User& us)
 {
 	output << us._userName << endl;
 	output << us._login << endl;
-	output << us._password << endl;
 
 	return output;
 }
-bool User::Check(string login, int password)
+bool User::CheckEnter(string login, string password)
 {
 	if ((_login == login) && (_password == password))
 	{
@@ -59,11 +59,12 @@ bool User::Check(string login, int password)
 	}
 	return false;
 };
+
  
 MessageArray::MessageArray(int size) : _msgArr(new string[size]), _size(size)
 {
 
-}
+};
 void MessageArray::CoppyOfMsgArr(int newSize)
 {
 	string* msgArr = new string[newSize];
@@ -77,7 +78,7 @@ void MessageArray::CoppyOfMsgArr(int newSize)
 	_size = newSize;
 }
 
-void MessageArray::Test(string msg)
+void MessageArray::PushBackMessage(string msg)
 {
 	CoppyOfMsgArr(_size + 1);
 	_msgArr[_size - 1] = msg;

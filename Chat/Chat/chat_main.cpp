@@ -8,7 +8,7 @@ int main()
 	User* data = new User[size];
 	string userName, login;
 	MessageArray* arr = new MessageArray[size];
-	int password;
+	string password;
 	int i = 0;
 	char open;
 	cout << "Выберите,что вы хотите сделать" << endl;
@@ -25,9 +25,17 @@ int main()
 			getline(cin, userName);
 			cout << "Введите логин: ";
 			getline(cin, login);
+			for (int z=0; z < i; z++)
+			{
+				while(login==data[z].GetLogin())
+				{
+					cout << "Такой логин уже существует. Пожалуйста,придумайте другой логин" << endl;
+					z = 0;
+					getline(cin, login);
+				}
+			}
 			cout << "Введите пароль: ";
-			cin >> password;
-			clearCin();
+			getline(cin, password);
 			data[i] = User(userName, login, password);
 			arr[i] = MessageArray(0);
 			++i;
@@ -46,13 +54,12 @@ int main()
 			cout << "Введите логин" << endl;
 			getline(cin, login);
 			cout << "Введите пароль" << endl;
-			cin >> password;
-			clearCin();
+			getline(cin, password);
 			bool b;
 			int i = 0;
 			for (; i < size; i++)
 			{
-				b = data[i].Check(login, password);
+				b = data[i].CheckEnter(login, password);
 				if (b == true)
 				{
 					string name = data[i].GetUserName();
@@ -67,58 +74,68 @@ int main()
 						case '1':
 						{
 							char choice2;
-							cout << "Кому вы хотите написать сообщение:" << endl << "1.Определенному пользователю" << endl << "2.Групповое сообщение" << endl;
+							cout << "Кому вы хотите написать сообщение:" << endl << "1.Определенному пользователю" << endl << "2.Групповое сообщение" << endl<<"3.Вернутся назад"<<endl;
 							cin >> choice2;
 							clearCin();
-							switch (choice2)
+							while (choice2 != '3')
 							{
-							case '1':
-							{
-								cout << "Имена пользователей:" << endl;
-								for (int j = 0; j < i; ++j)
+								switch (choice2)
 								{
-									cout << '-' << data[j].GetUserName() << endl;
-								}
-								for (int j = i + 1; j < size - 1; ++j)
+								case '1':
 								{
-									cout << '-' << data[j].GetUserName() << endl;
-								}
-								cout << endl;
-								cout << "Введите имя пользователя кому хотите написать сообщение: ";
-								getline(cin, userName);
-								for (int k = 0; k < size - 1; ++k)
-								{
-									if (userName == data[k].GetUserName())
+									cout << "Имена пользователей:" << endl;
+									for (int j = 0; j < i; ++j)
 									{
-										string message;
-										cout << "Введите сообщение: ";
-										getline(cin, message);
-										message = "У вас сообщение от пользователя " + data[i].GetUserName() + ": " + '\"' + message + '\"';
-										data[k].SetMessage(message);
-										arr[k].Test(data[k].GetMessage());
+										cout << '-' << data[j].GetUserName() << endl;
 									}
-								}
-								break;
-							}
-							case '2':
-							{
-								string message;
-								string groupmessage;
-								cout << "Введите сообщение: ";
-								getline(cin, message);
-								for (int k = 0; k < size - 1; ++k)
-								{
-									groupmessage = ' ';
-									if (name != data[k].GetUserName())
+									for (int j = i + 1; j < size - 1; ++j)
 									{
-										groupmessage = "У вас групповое сообщение от пользователя " + data[i].GetUserName() + ": " + '\"' + message + '\"';
-										data[k].SetMessage(groupmessage);
-										arr[k].Test(data[k].GetMessage());
-									};
+										cout << '-' << data[j].GetUserName() << endl;
+									}
+									cout << endl;
+									cout << "Введите имя пользователя кому хотите написать сообщение: ";
+									getline(cin, userName);
+									for (int k = 0; k < size - 1; ++k)
+									{
+										if (userName == data[k].GetUserName())
+										{
+											string message;
+											cout << "Введите сообщение: ";
+											getline(cin, message);
+											message = "У вас сообщение от пользователя " + data[i].GetUserName() + ": " + '\"' + message + '\"';
+											data[k].SetMessage(message);
+											arr[k].PushBackMessage(data[k].GetMessage());
+										}
+									}
+									break;
 								}
-								break;
-							}
-							}
+								case '2':
+								{
+									string message;
+									string groupmessage;
+									cout << "Введите сообщение: ";
+									getline(cin, message);
+									for (int k = 0; k < size - 1; ++k)
+									{
+										groupmessage = ' ';
+										if (name != data[k].GetUserName())
+										{
+											groupmessage = "У вас групповое сообщение от пользователя " + data[i].GetUserName() + ": " + '\"' + message + '\"';
+											data[k].SetMessage(groupmessage);
+											arr[k].PushBackMessage(data[k].GetMessage());
+										};
+									}
+									break;
+								}
+								case '3':
+								{
+									break;
+								}
+								}
+								cout << "Кому вы хотите написать сообщение:" << endl << "1.Определенному пользователю" << endl << "2.Групповое сообщение" << endl << "3.Вернутся назад"<<endl;
+								cin >> choice2;
+								clearCin();
+							};
 							break;
 						}
 						case '2':
@@ -168,6 +185,8 @@ int main()
 		cout << "1.Создать аккаунт" << endl << "2.Войти в аккаунт" << endl << "3.Отобразить всех пользователей" << endl << "4.Выйти из чата" << endl;
 		cin >> open;
 		clearCin();
-	}
+	};
+	delete[] data;
+	delete[] arr;
 	return 0;
 }

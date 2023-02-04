@@ -10,22 +10,23 @@ class User
 protected:
 	string _userName;
 	string _login;
-	int _password;
+	string _password;
 	string _message;
 
 public:
 	User() = default;
-	User(string userName, string login, int password);
+	User(string userName, string login, string password);
 	User(const User& other);
 	~User();
-	virtual User* plusOneElement(User* data, int size);
-	string GetUserName();
-	void SetMessage(string message);
-	string GetMessage();
+	 User* plusOneElement(User* data, int size);
+	 string GetUserName() const;
+ void SetMessage(string message);
+	 string GetMessage() const;
+	 string GetLogin() const;
 	friend ostream& operator<<(ostream& output, const User& us);
-	bool Check(string login, int password);
+	bool CheckEnter(string login, string password);
 };
-
+;
 class MessageArray : public User
 {
 private:
@@ -38,7 +39,7 @@ public:
 	void CoppyOfMsgArr(int newSize); 
 	~MessageArray();
 	MessageArray* plusOneElement(MessageArray* arr, int size);
-	void Test(string msg);
+	void PushBackMessage(string msg);
 	friend ostream& operator<<(ostream& output, const MessageArray& msgArr);
 };
 

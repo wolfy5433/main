@@ -30,19 +30,22 @@ int main()
 			{
 				while(login==data[z].GetLogin())
 				{
-					cout << "Такой логин уже существует. Пожалуйста,придумайте другой логин" << endl;
+					cout << "Такой логин уже существует. Пожалуйста,придумайте другой логин: " ;
 					z = 0;
 					getline(cin, login);
 				}
 			}
-			cout << "Введите пароль: ";
+			cout << "Введите пароль(Все пробелы будут удалены!): ";
 			getline(cin, password);
+			password.erase(remove_if(password.begin(), password.end(), isspace), password.end());
+			cout << endl;
 			data[i] = User(userName, login, password);
 			arr[i] = MessageArray(0);
 			++i;
 			data = data->plusOneElement(data, size); // меняет размер массива на + 1
 			arr = arr->plusOneElement(arr, size);
 			++size;
+			cout << "Аккаунт успешно создан\n" << endl;
 			break;
 		}
 		case '2':
@@ -52,10 +55,11 @@ int main()
 				cout << "Не создано еще ни одного аккаунта\n" << endl;
 				break;
 			}
-			cout << "Введите логин" << endl;
+			cout << "Введите логин: " ;
 			getline(cin, login);
-			cout << "Введите пароль" << endl;
+			cout << "Введите пароль: ";
 			getline(cin, password);
+			cout << endl;
 			bool b;
 			int i = 0;
 			for (; i < size; i++)
@@ -63,9 +67,10 @@ int main()
 				b = data[i].CheckEnter(login, password);
 				if (b == true)
 				{
+					cout << endl;
 					string name = data[i].GetUserName();
 					char choiceInsideCase2;
-					cout << "Выберите действие:" << endl << "1.Написать сообщение" << endl << "2.Показать сообщение" << endl << "3.Выйти из аккаунта" << endl;
+					cout << "Выберите действие:" << endl << "1.[Написать сообщение] 2.[Показать сообщение] 3.[Выйти из аккаунта]" << endl;
 					cin >> choiceInsideCase2;
 					clearCin();
 					while (choiceInsideCase2 != '3')
@@ -75,8 +80,10 @@ int main()
 						case '1':
 						{
 							char choice2;
-							cout << "Кому вы хотите написать сообщение:" << endl << "1.Определенному пользователю" << endl << "2.Групповое сообщение" << endl<<"3.Вернутся назад"<<endl;
+							cout << endl;
+							cout << "Кому вы хотите написать сообщение: 1.[Определенному пользователю] 2.[Групповое сообщение] 3.[Вернутся назад]"<<endl;
 							cin >> choice2;
+							cout << endl;
 							clearCin();
 							while (choice2 != '3')
 							{
@@ -87,11 +94,11 @@ int main()
 									cout << "Имена пользователей:" << endl;
 									for (int j = 0; j < i; ++j)
 									{
-										cout << '-' << data[j].GetUserName() << endl;
+										cout << '-' << data[j].GetUserName() << "; ";
 									}
 									for (int j = i + 1; j < size - 1; ++j)
 									{
-										cout << '-' << data[j].GetUserName() << endl;
+										cout << '-' << data[j].GetUserName() << "; ";
 									}
 									cout << endl;
 									cout << "Введите имя пользователя кому хотите написать сообщение: ";
@@ -103,6 +110,7 @@ int main()
 											string message;
 											cout << "Введите сообщение: ";
 											getline(cin, message);
+											cout << endl;
 											message = "У вас сообщение от пользователя " + data[i].GetUserName() + ": " + '\"' + message + '\"';
 											data[k].SetMessage(message);
 											arr[k].PushBackMessage(data[k].GetMessage());
@@ -133,27 +141,27 @@ int main()
 									break;
 								}
 								}
-								cout << "Кому вы хотите написать сообщение:" << endl << "1.Определенному пользователю" << endl << "2.Групповое сообщение" << endl << "3.Вернутся назад"<<endl;
+								cout << endl;
+								cout << "Кому вы хотите написать сообщение: 1.[Определенному пользователю] 2.[Групповое сообщение] 3.[Вернутся назад]" << endl;
 								cin >> choice2;
+								cout << endl;
 								clearCin();
 							};
 							break;
 						}
 						case '2':
 						{
+							cout << endl;
 							cout << arr[i] << endl;
-							//cout << data[i].GetMessage() << '\n' << endl;
-							/*system("pause>0");*/
 							break;
 						}
 						case '3':
 						{
-							cout << "Выход из аккаунта произведен" << endl;
 							break;
 						}
 					    }
-						cout << "Выберите действие:" << endl << "1.Написать сообщение" << endl << "2.Показать сообщение" << endl << "3.Выйти из аккаунта" << endl;
-					cin >> choiceInsideCase2;
+						cout << "Выберите действие:" << endl << "1.[Написать сообщение] 2.[Показать сообщение] 3.[Выйти из аккаунта]" << endl;
+						cin >> choiceInsideCase2;
 					clearCin();
 					};
 					break;
@@ -161,7 +169,7 @@ int main()
 			};
 			if (b == false)
 			{
-				cout << "Неверный логин или пароль" << endl;
+				cout << "Неверный логин или пароль\n" << endl;
 			};
 			break;
 		}
@@ -183,6 +191,8 @@ int main()
 			break;
 		};
 		}
+		cout<<endl;
+		cout << "Выберите,что вы хотите сделать" << '\n' << endl;
 		cout << "1.[Создать аккаунт] 2.[Войти в аккаунт] 3.[Отобразить всех пользователей] 4.[Выйти из чата]" << endl;
 		//cout << "1.Создать аккаунт" << endl << "2.Войти в аккаунт" << endl << "3.Отобразить всех пользователей" << endl << "4.Выйти из чата" << endl;
 		cin >> open;

@@ -45,8 +45,8 @@ string User::GetLogin() const
 }
 ostream& operator<<(ostream& output, const User& us)
 {
-	output << us._userName << endl;
-	output << us._login << endl;
+	output <<"Имя пользователя: "<< us._userName << endl;
+	output <<"Логин: "<<us._login << endl;
 
 	return output;
 }
@@ -54,7 +54,7 @@ bool User::CheckEnter(string login, string password)
 {
 	if ((_login == login) && (_password == password))
 	{
-		cout << _userName << ", вход в аккаунт произведен успешно" << endl;
+		cout << _userName << ", вход в аккаунт произведен успешно\n";
 		return true;
 	}
 	return false;

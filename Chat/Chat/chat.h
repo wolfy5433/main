@@ -26,7 +26,7 @@ public:
 	friend ostream& operator<<(ostream& output, const User& us);
 	bool CheckEnter(string login, string password);
 };
-;
+
 class MessageArray : public User
 {
 private:

@@ -149,6 +149,11 @@ int main()
 											string message;
 											cout << "Введите сообщение: ";
 											getline(cin, message);
+											while (message.empty())
+											{
+												cout << "Сообщение не отправлено(отсутсвует текст). Введите сообщение: ";
+												getline(cin, message);
+											}
 											message = "У вас сообщение от пользователя " + data[i].GetUserName() + ": " + '\"' + message + '\"';
 											data[k].SetMessage(message);
 											arr[k].PushBackMessage(data[k].GetMessage()); // Записывает сообщение в массив
@@ -164,6 +169,11 @@ int main()
 									string groupmessage;
 									cout << "Введите сообщение: ";
 									getline(cin, message);
+									while (message.empty())
+									{
+										cout << "Сообщение не отправлено(отсутсвует текст). Введите сообщение: ";
+										getline(cin, message);
+									}
 									for (int k = 0; k < size - 1; ++k)
 									{
 										groupmessage = ' ';

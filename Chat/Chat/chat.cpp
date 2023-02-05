@@ -43,6 +43,7 @@ string User::GetLogin() const
 {
 	return _login;
 }
+
 ostream& operator<<(ostream& output, const User& us)
 {
 	output <<"Имя пользователя: "<< us._userName << endl;
@@ -50,16 +51,16 @@ ostream& operator<<(ostream& output, const User& us)
 
 	return output;
 }
+
 bool User::CheckEnter(string login, string password)
 {
 	if ((_login == login) && (_password == password))
 	{
-		cout << _userName << ", вход в аккаунт произведен успешно\n";
+		cout << _userName << ", вход в аккаунт произведен успешно!\n" << endl;
 		return true;
 	}
 	return false;
 };
-
  
 MessageArray::MessageArray(int size) : _msgArr(new string[size]), _size(size)
 {

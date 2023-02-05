@@ -18,11 +18,11 @@ public:
 	User(string userName, string login, string password);
 	User(const User& other);
 	~User();
-	 User* plusOneElement(User* data, int size);
-	 string GetUserName() const;
- void SetMessage(string message);
-	 string GetMessage() const;
-	 string GetLogin() const;
+	User* plusOneElement(User* data, int size);
+	string GetUserName() const;
+    void SetMessage(string message);
+	string GetMessage() const;
+	string GetLogin() const;
 	friend ostream& operator<<(ostream& output, const User& us);
 	bool CheckEnter(string login, string password);
 };

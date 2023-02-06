@@ -1,5 +1,7 @@
 #include "chat.h"
+
 using namespace std;
+
 User::User(string userName, string login, string password) : _userName(userName), _login(login), _password(password)
 {
 	
@@ -7,7 +9,7 @@ User::User(string userName, string login, string password) : _userName(userName)
 
 User::~User()
 {
-
+	
 }
 
 User::User(const User& other)
@@ -16,6 +18,7 @@ User::User(const User& other)
 	_login = other._login;
 	_password = other._password;
 }
+
  User* User::plusOneElement(User* data, int size)
 {
 	User* coppyOfData = new User[size + 1];
@@ -39,6 +42,7 @@ string User::GetMessage() const
 {
 	return _message;
 }
+
 string User::GetLogin() const
 {
 	return _login;
@@ -60,12 +64,13 @@ bool User::CheckEnter(string login, string password)
 		return true;
 	}
 	return false;
-};
+}
  
 MessageArray::MessageArray(int size) : _msgArr(new string[size]), _size(size)
 {
 
-};
+}
+
 void MessageArray::CoppyOfMsgArr(int newSize)
 {
 	string* msgArr = new string[newSize];
@@ -87,7 +92,7 @@ void MessageArray::PushBackMessage(string msg)
 
 MessageArray::~MessageArray()
 {
-
+	
 }
 
 ostream& operator<<(ostream& output, const MessageArray& msgArr)
@@ -99,6 +104,7 @@ ostream& operator<<(ostream& output, const MessageArray& msgArr)
 	output << '\n';
 	return output;
 }
+
 MessageArray* MessageArray::plusOneElement(MessageArray* arr, int size)
 {
 	MessageArray* coppyOfarray = new MessageArray[size + 1];
@@ -107,8 +113,9 @@ MessageArray* MessageArray::plusOneElement(MessageArray* arr, int size)
 	delete[] arr;
 	return coppyOfarray;
 }
-void clearCin()
+
+void clearCin() // Очищает буфер от символов, введённых через cin
 {
 	cin.clear();
-	cin.ignore(32767, '\n');
+	cin.ignore(32767, '\n'); 
 }

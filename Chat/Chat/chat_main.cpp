@@ -59,7 +59,7 @@ int main()
 				}
 			}
 			
-			cout << "Введите пароль(Все пробелы будут удалены!): ";
+			cout << "Введите пароль (все пробелы будут удалены!): ";
 			getline(cin, password);
 			password.erase(remove_if(password.begin(), password.end(), isspace), password.end()); // Удаляет все пробелы
 			while (password.empty())
@@ -155,8 +155,8 @@ int main()
 												getline(cin, message);
 											}
 											message = "У вас сообщение от пользователя " + data[i].GetUserName() + ": " + '\"' + message + '\"';
-											data[k].SetMessage(message);
-											arr[k].PushBackMessage(data[k].GetMessage()); // Записывает сообщение в массив
+											data[k].SetMessage(message); // присваивает _message в классе User значение message
+											arr[k].PushBackMessage(data[k].GetMessage()); // Записывает сообщение в массив через геттер GetMessage()
 											cout << "Сообщение успешно отправлено!" << endl;
 										}
 									}
@@ -223,6 +223,8 @@ int main()
 					cout << "Выберите действие:\n1.[Написать сообщение] 2.[Показать сообщение] 3.[Выйти из аккаунта]" << endl;
 					cin >> choiceInsideCase2;
 					clearCin();
+
+					cout << endl;
 					};
 
 					cout << endl;

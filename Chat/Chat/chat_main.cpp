@@ -105,12 +105,12 @@ int main()
 					string name = data[i].GetUserName();
 
 					char choiceInsideCase2;
-					cout << "Выберите действие:" << endl << "1.[Написать сообщение] 2.[Показать сообщение] 3.[Выйти из аккаунта]" << endl;
+					cout << "Выберите действие:" << endl << "1.[Написать сообщение] 2.[Показать сообщение] 3.[Сменить пароль] 4.[Выйти из аккаунта]" << endl;
 					cin >> choiceInsideCase2;
 					clearCin();
 					cout << endl;
 
-					while (choiceInsideCase2 != '3')
+					while (choiceInsideCase2 != '4')
 					{
 						switch (choiceInsideCase2)
 						{
@@ -194,7 +194,6 @@ int main()
 
 									break;
 								}
-
 								}
 								cout << endl;
 								cout << "Кому вы хотите написать сообщение:\n1.[Определенному пользователю] 2.[Групповое сообщение] 3.[Вернутся назад]" << endl;
@@ -212,6 +211,31 @@ int main()
 
 							break;
 						}
+						case '3': //Смена пароля на новый
+						{
+							string newpassword;
+							cout << "Введите старый пароль: ";
+							getline(cin, newpassword);
+							while (newpassword != data[i].GetPassword())
+							{
+								cout << "Пароль неверный" << endl;
+								cout << "Введите старый пароль: ";
+								getline(cin, newpassword);
+							}
+								cout << "Введите новый пароль: ";
+								getline(cin, newpassword);
+								newpassword.erase(remove_if(newpassword.begin(), newpassword.end(), isspace), newpassword.end()); // Удаляет все пробелы
+								while (newpassword.empty())
+								{
+									cout << "Строка с паролем не должна быть пустой. Пожалуйста, введите пароль: ";
+									getline(cin, newpassword);
+									newpassword.erase(remove_if(newpassword.begin(), newpassword.end(), isspace), newpassword.end());
+								}
+								data[i].SetPassword(newpassword);
+								cout << "Пароль успешно изменен\n" << endl;
+							
+							break;
+						}
 						default:
 						{
 							cout << "Неверное значение\n" << endl;
@@ -220,7 +244,7 @@ int main()
 						}
 					    }
 
-					cout << "Выберите действие:\n1.[Написать сообщение] 2.[Показать сообщение] 3.[Выйти из аккаунта]" << endl;
+					cout << "Выберите действие:\n1.[Написать сообщение] 2.[Показать сообщение] 3.[Сменить пароль] 4.[Выйти из аккаунта]" << endl;
 					cin >> choiceInsideCase2;
 					clearCin();
 

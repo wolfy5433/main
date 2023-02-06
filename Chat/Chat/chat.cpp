@@ -37,12 +37,18 @@ void User::SetMessage(string message)
 {
 	_message = message;
 }
-
+void User::SetPassword(string newpassword)
+{
+	_password = newpassword;
+}
 string User::GetMessage() const
 {
 	return _message;
 }
-
+string User::GetPassword() const
+{
+	return _password;
+}
 string User::GetLogin() const
 {
 	return _login;

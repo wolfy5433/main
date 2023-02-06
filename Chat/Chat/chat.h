@@ -21,6 +21,8 @@ public:
 	User* plusOneElement(User* data, int size);
 	string GetUserName() const;
     void SetMessage(string message);
+	void SetPassword(string newpassword);
+	string GetPassword() const;
 	string GetMessage() const;
 	string GetLogin() const;
 	friend ostream& operator<<(ostream& output, const User& us);

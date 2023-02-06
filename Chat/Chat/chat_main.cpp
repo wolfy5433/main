@@ -231,8 +231,20 @@ int main()
 									getline(cin, newpassword);
 									newpassword.erase(remove_if(newpassword.begin(), newpassword.end(), isspace), newpassword.end());
 								}
+								while (newpassword == data[i].GetPassword())
+								{
+									cout << "Это ваш старый пароль! Придумайте другой пароль: ";
+									getline(cin, newpassword);
+									newpassword.erase(remove_if(newpassword.begin(), newpassword.end(), isspace), newpassword.end());
+									while (newpassword.empty())
+									{
+										cout << "Строка с паролем не должна быть пустой. Пожалуйста, введите пароль: ";
+										getline(cin, newpassword);
+										newpassword.erase(remove_if(newpassword.begin(), newpassword.end(), isspace), newpassword.end());
+									}
+								}
 								data[i].SetPassword(newpassword);
-								cout << "Пароль успешно изменен\n" << endl;
+								cout << "Пароль успешно изменен!\n" << endl;
 							
 							break;
 						}

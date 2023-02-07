@@ -37,18 +37,22 @@ void User::SetMessage(string message)
 {
 	_message = message;
 }
+
 void User::SetPassword(string newpassword)
 {
 	_password = newpassword;
 }
+
 string User::GetMessage() const
 {
 	return _message;
 }
+
 string User::GetPassword() const
 {
 	return _password;
 }
+
 string User::GetLogin() const
 {
 	return _login;
@@ -74,7 +78,19 @@ bool User::CheckEnter(string login, string password)
  
 MessageArray::MessageArray(int size) : _msgArr(new string[size]), _size(size)
 {
+	
+}
 
+MessageArray::MessageArray(const MessageArray& other)
+{
+	this->_size = other._size;
+	
+	this->_msgArr = new string[other._size];
+
+	for (int i = 0; i < _size; ++i)
+	{
+		_msgArr[i] = other._msgArr[i];
+	}
 }
 
 void MessageArray::CoppyOfMsgArr(int newSize)

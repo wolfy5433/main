@@ -38,6 +38,7 @@ private:
 public:
 	MessageArray() = default;
 	MessageArray(int size);
+	MessageArray(const MessageArray& other);
 	void CoppyOfMsgArr(int newSize); 
 	~MessageArray();
 	MessageArray* plusOneElement(MessageArray* arr, int size);

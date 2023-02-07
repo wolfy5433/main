@@ -114,7 +114,6 @@ void MessageArray::PushBackMessage(string msg)
 
 MessageArray::~MessageArray()
 {
-	
 }
 
 ostream& operator<<(ostream& output, const MessageArray& msgArr)

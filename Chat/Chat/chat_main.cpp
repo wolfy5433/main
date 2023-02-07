@@ -11,7 +11,7 @@ int main()
 	User* data = new User[size]; // Массив для хранения аккаунтов
 	MessageArray* arr = new MessageArray[size]; // Массив для хранения сообщений
 
-	string userName, login, password;
+	string userName, login, password, message;
 	
 	cout << "Добро пожаловать в чат.\nВыберите,что вы хотите сделать:" << endl;
 	cout << "1.[Создать аккаунт] 2.[Войти в аккаунт] 3.[Отобразить всех пользователей] 4.[Выйти из чата]" << endl;
@@ -31,17 +31,17 @@ int main()
 		{
 			cout << "Введите имя: ";
 			getline(cin, userName);
-			while (userName.empty())
+			while ((userName.empty()) || (userName[0] == ' ') || (userName[userName.size()-1] == ' '))
 			{
-				cout << "Строка с именем не должна быть пустой. Пожалуйста, введите имя: ";
+				cout << "Строка с именем не должна быть пустой и имя не должно начинатся или заканчиваться пробелом.\nПожалуйста, введите имя еще раз: ";
 				getline(cin, userName);
 			}
 
 			cout << "Введите логин: ";
 			getline(cin, login);
-			while (login.empty())
+			while ((login.empty()) || (login[0] == ' ') ||  (login[login.size()-1] == ' '))
 			{
-				cout << "Строка с логином не должна быть пустой. Пожалуйста, введите логин: ";
+				cout << "Строка с логином не должна быть пустой и логин не должен начинатся или заканчиваться пробелом.\nПожалуйста, введите логин еще раз: ";
 				getline(cin, login);
 			}
 			for (int z = 0; z < i; z++)
@@ -94,7 +94,11 @@ int main()
 			cout << "Введите пароль: ";
 			getline(cin, password);
 			cout << endl;
-
+			if (login.empty())
+			{
+				cout << "Неверный логин или пароль\n" << endl;
+				break;
+			}
 			bool b;
 			int i = 0;
 			for (; i < size; i++)
@@ -146,13 +150,26 @@ int main()
 									{
 										if (userName == data[k].GetUserName())
 										{
-											string message;
 											cout << "Введите сообщение: ";
 											getline(cin, message);
+											for (int z = 0; z < message.size(); z++)
+											{
+												while (message[0] == ' ')
+												{
+													message.erase(message.find(' '), 1);
+												}
+											}
 											while (message.empty())
 											{
 												cout << "Сообщение не отправлено(отсутсвует текст). Введите сообщение: ";
 												getline(cin, message);
+												for (int z = 0; z < message.size(); z++)
+												{
+													while (message[0] == ' ')
+													{
+														message.erase(message.find(' '), 1);
+													}
+												}
 											}
 											message = "У вас сообщение от пользователя " + data[i].GetUserName() + ": " + '\"' + message + '\"';
 											data[k].SetMessage(message); // присваивает _message в классе User значение message
@@ -165,14 +182,27 @@ int main()
 								}
 								case '2': // групповое сообщение
 								{
-									string message;
 									string groupmessage;
 									cout << "Введите сообщение: ";
 									getline(cin, message);
+									for (int z = 0; z < message.size(); z++)
+									{
+										while (message[0] == ' ')
+										{
+											message.erase(message.find(' '), 1);
+										}
+									}
 									while (message.empty())
 									{
 										cout << "Сообщение не отправлено(отсутсвует текст). Введите сообщение: ";
 										getline(cin, message);
+										for (int z = 0; z < message.size(); z++)
+										{
+											while (message[0] == ' ')
+											{
+												message.erase(message.find(' '), 1);
+											}
+										}
 									}
 									for (int k = 0; k < size - 1; ++k)
 									{
@@ -206,6 +236,7 @@ int main()
 						}
 						case '2':
 						{
+
 							cout << arr[i];
 							system("pause>0"); // Ставит программу на паузу, чтобы пользователь прочитал сообщение
 
